@@ -15,14 +15,21 @@ apellido la letra Z.
 cuyo nombre sea “Brendan” y el resultado ordenarlo por nombre de
 sucursal.
 
-	
+	SELECT 
+	customer_name, 
+	customer_surname, 
+	(date() - dob) AS edad, 					FALTA TERMINARRRR!!!
+	sucursal.branch_name AS nombre_sucursal 
+	FROM cliente
+	WHERE customer_name LIKE "%brendan";
+
 
 - Seleccionar de la tabla de préstamos, los préstamos con un importe mayor
 a $80.000 y los préstamos prendarios utilizando la unión de
 tablas/consultas (recordar que en las bases de datos la moneda se guarda
 como integer, en este caso con 2 centavos).
 
-	
+									COMPLETAR!!!!!
 
 - Seleccionar los prestamos cuyo importe sea mayor que el importe medio de
 todos los prestamos.
@@ -44,7 +51,15 @@ todos los prestamos.
 - Seleccionar los préstamos que tengan fecha en abril, junio y agosto,
 ordenándolos por importe.
 
-
+	SELECT loan_date, loan_total FROM prestamo
+	WHERE loan_date LIKE "_____04%"
+	UNION 
+	SELECT loan_date, loan_total FROM prestamo
+	WHERE loan_date LIKE "_____06%"
+	UNION 
+	SELECT loan_date, loan_total FROM prestamo
+	WHERE loan_date LIKE "_____08%"
+	ORDER by loan_total;
 
 - Obtener el importe total de los prestamos agrupados por tipo de préstamos.
 
