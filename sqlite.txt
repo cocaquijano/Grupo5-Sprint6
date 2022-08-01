@@ -1,0 +1,74 @@
+	------- PROBLEMÁTICA 3 -------
+
+- Seleccionar las cuentas con saldo negativo.
+
+	SELECT balance FROM cuenta
+	WHERE balance < 0;
+
+- Seleccionar el nombre, apellido y edad de los clientes que tengan en el
+apellido la letra Z.
+
+	SELECT customer_name, customer_surname, dob FROM cliente
+	WHERE customer_surname LIKE "%z%";
+
+- Seleccionar el nombre, apellido, edad y nombre de sucursal de las personas
+cuyo nombre sea “Brendan” y el resultado ordenarlo por nombre de
+sucursal.
+
+	
+
+- Seleccionar de la tabla de préstamos, los préstamos con un importe mayor
+a $80.000 y los préstamos prendarios utilizando la unión de
+tablas/consultas (recordar que en las bases de datos la moneda se guarda
+como integer, en este caso con 2 centavos).
+
+	
+
+- Seleccionar los prestamos cuyo importe sea mayor que el importe medio de
+todos los prestamos.
+
+	SELECT loan_total FROM prestamo
+	WHERE loan_total > (SELECT sum(loan_total)/max(loan_id) FROM prestamo);
+
+- Contar la cantidad de clientes menores a 50 años.
+
+	SELECT date() - dob AS menores_de_50 FROM cliente
+	WHERE menores_de_50 < 50;					FALTA CONTARLOS ACAAAA!!!!!!
+
+- Seleccionar las primeras 5 cuentas con saldo mayor a 8.000$.
+
+	SELECT balance, account_id FROM cuenta
+	WHERE balance > 8000 /* u 800000, el resultado es el mismo*/
+	LIMIT 5;
+
+- Seleccionar los préstamos que tengan fecha en abril, junio y agosto,
+ordenándolos por importe.
+
+
+
+- Obtener el importe total de los prestamos agrupados por tipo de préstamos.
+
+	SELECT loan_type, SUM(loan_total) AS loan_total_acu FROM prestamo
+	WHERE loan_type LIKE "hipotecario%"
+	UNION
+	SELECT  loan_type, SUM(loan_total) FROM prestamo
+	WHERE loan_type LIKE "personal%"
+	UNION
+	SELECT loan_type, SUM(loan_total) FROM prestamo
+	WHERE loan_type LIKE "prendario%";
+
+	o esto, sinceramente no entendí la diferencia entre esta consigna y la siguiente:
+
+	SELECT SUM(loan_total) AS importe_total FROM prestamo;
+
+- Por cada tipo de préstamo de la tabla préstamo, calcular la suma de sus
+importes. Renombrar la columna como loan_total_accu.
+
+	SELECT loan_type, SUM(loan_total) AS loan_total_accu FROM prestamo
+	WHERE loan_type LIKE "hipotecario%"
+	UNION
+	SELECT  loan_type, SUM(loan_total) FROM prestamo
+	WHERE loan_type LIKE "personal%"
+	UNION
+	SELECT loan_type, SUM(loan_total) FROM prestamo
+	WHERE loan_type LIKE "prendario%";
