@@ -29,7 +29,11 @@ a $80.000 y los préstamos prendarios utilizando la unión de
 tablas/consultas (recordar que en las bases de datos la moneda se guarda
 como integer, en este caso con 2 centavos).
 
-									COMPLETAR!!!!!
+	SELECT loan_total FROM prestamo
+	WHERE loan_total > 8000000
+	UNION ALL
+	SELECT loan_type FROM prestamo
+	WHERE loan_type LIKE "%prend%";
 
 - Seleccionar los prestamos cuyo importe sea mayor que el importe medio de
 todos los prestamos.
@@ -39,8 +43,8 @@ todos los prestamos.
 
 - Contar la cantidad de clientes menores a 50 años.
 
-	SELECT date() - dob AS menores_de_50 FROM cliente
-	WHERE menores_de_50 < 50;					FALTA CONTARLOS ACAAAA!!!!!!
+	SELECT count(*) as menores_de_50 FROM cliente
+	WHERE (date() - dob) < 50;					
 
 - Seleccionar las primeras 5 cuentas con saldo mayor a 8.000$.
 
